@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate Food | Give From The Heart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="/img/logo.jpeg">
+    <style>
+        .g-recaptcha {
+            transform: scale(0.75);
+            transform-origin: 0 0;
+        }
+        
+        body {
+            padding: 0;
+        }
+        
+        .form__input {
+            box-shadow: 4px 5px 5px 0px rgba(179, 172, 179, 1);
+        }
+    </style>
+</head>
+
+<body>
+    <section class="section-book">
+        <div class="container">
+            <div class="row">
+                <div class="book">
+                    <div class="book__form">
+                        <form id="commentForm" class="form">
+                            <div class="u-margin-bottom-medium">
+                                <h2 class="heading-secondary"> Register</h2>
+                            </div>
+                            <div class="form__group">
+                                <input type="number" class="form__input" name="distributionPincode" pattern="[0-9]{6}" placeholder="Pincode" id="pincode" required>
+                                <label for="name" class="form__label">Pincode</label>
+                            </div>
+
+                            <div class="form__group">
+                                <input type="date" class="form__input" name="originalDate" placeholder="Date" id="date" required>
+                                <label for="date" class="form__label">Date</label>
+                            </div>
+
+                            <div class="form__group">
+                                <select name="time" id="slot" class="form__input">
+                                    <option value="morning">Morning</option>
+                                    <option value="afternoon">Afternoon</option>
+                                    <option value="night">Night</option>
+                                </select>
+                            </div>
+                            <div class="form__group">
+                                <input type="text" name="distributionPlaces" class="form__input" id="places" placeholder="Places receiving food" style="box-shadow: 4px 5px 5px 0px rgba(179,172,179,1);">
+                                <label for="places" class="form__label">Places to be covered</label>
+                            </div>
+                            <div class="form__group">
+                                <input type="number" name="units" id="units" class="form__input" placeholder="Number of food packets" required>
+                                <label for="units" class="form__label select ">Number of food packets</label>
+                            </div>
+                            <div class="form__group">
+                                <div class="g-recaptcha" data-sitekey="6LcWxfQUAAAAALF4WXsnFa5M-QeGaCqjZ7abU0cw"></div>
+                            </div>
+                            <div class="form__group ">
+                                <button type="submit " id="submit" class="btn btn--green">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/js/donar.js"></script>
+
+</body>
+
+</html>

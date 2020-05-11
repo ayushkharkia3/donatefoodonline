@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate Food | Give From The Heart</title>
+    <link rel="icon" href="/img/logo.jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/cards.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="navigation">
+        <input type="checkbox" class="navigation__checkbox" id="navi-toggle">
+
+        <label for="navi-toggle" class="navigation__button">
+                <span class="navigation__icon">&nbsp;</span>
+            </label>
+
+        <div class="navigation__background">&nbsp;</div>
+
+        <nav class="navigation__nav">
+            <ul class="navigation__list">
+                <li class="navigation__item"><a href="/" class="navigation__link"><span>01</span>Home</a></li>
+                <li class="navigation__item"><a href="/org/login" class="navigation__link"><span>02</span>Login as an admin</a></li>
+                <li class="navigation__item"><a href="/org/register" class="navigation__link"><span>03</span>Register your organization</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <h4 class="heading-secondary" style="margin-top: 15px; margin-bottom: 10px;">
+            <%= len %> Organizations serving on
+                <%= date %>
+                    <%= time %>
+                        <h3 class="heading-tertiary" style="display: block; font-size: 4rem;">
+                            <%= pincode %>
+                        </h3>
+
+        </h4>
+
+        <% if(len === 0) { %>
+            <h4 class="heading-fourth" style="display: block;">No organization is serving on this date.</h4>
+            <% } else { %>
+                <% donars.forEach(e => { %>
+                    <div class="box">
+                        <div class="box-1">
+                            <div class="box-heading">
+                                <h2 class="heading-tertiary">
+                                    <%= e.organizationName %>
+                                </h2>
+                            </div>
+                            <div class="contact heading-fourth">
+                                +91
+                                <%= e.organizationContact %>
+                            </div>
+                            <div class="email heading-fourth">
+                                <%= e.organizationEmail %>
+                            </div>
+                            <div class="qty heading-fourth">
+                                <%= e.units %> Food packets </div>
+                            <div class="heading-fourth">
+                                Areas :-
+                                <%= e.distributionPlaces %>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+                        <% } %>
+
+
+    </div>
+</body>
+
+</html>

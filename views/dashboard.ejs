@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate Food | Give From The Heart</title>
+    <link rel="icon" href="/img/logo.jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/cards.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="navigation">
+        <input type="checkbox" class="navigation__checkbox" id="navi-toggle">
+
+        <label for="navi-toggle" class="navigation__button">
+                <span class="navigation__icon">&nbsp;</span>
+            </label>
+
+        <div class="navigation__background">&nbsp;</div>
+
+        <nav class="navigation__nav">
+            <ul class="navigation__list">
+                <li class="navigation__item"><a href="/" class="navigation__link"><span>01</span>Home</a></li>
+                <li class="navigation__item"><a href="/org/donate" class="navigation__link"><span>02</span>Add Slot</a></li>
+                <li class="navigation__item"><a href="/org/logout" class="navigation__link"><span>03</span>Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <h4 class="heading-secondary" style="margin-top: 15px; margin-bottom: 10px;">
+            <%= name %>
+
+        </h4>
+        <h3 class="heading-tertiary" style="display: block; font-size: 4rem;">
+            Your bookings
+        </h3>
+
+        <% if(donars.length === 0) { %>
+            <h4 class="heading-fourth" style="display: block;">You have not made any bookings</h4>
+            <% } else { %>
+                <% donars.forEach(e => { %>
+                    <div class="box">
+                        <div class="box-1">
+                            <div class="contact heading-fourth" style="padding-top: 2rem;">
+
+                                Date:
+                                <%= e.distributionDate %>
+                            </div>
+                            <div class="email heading-fourth">
+                                Time:
+                                <%= e.slot %>
+                            </div>
+                            <div class="qty heading-fourth">
+                                Food packets:
+                                <%= e.units %>
+                            </div>
+                            <div class="heading-fourth">
+                                Pincode :
+                                <%= e.distributionPincode %>
+                            </div>
+                            <div class="heading-fourth">
+                                Areas :-
+                                <%= e.distributionPlaces %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <% }) %>
+                        <% } %>
+
+                            <a href="/org/donate" class="btn btn--green">Add Slot</a>
+
+                            </form>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<% if(typeof errors != 'undefined') { %>
+    <% errors.forEach(error=>{ %>
+        <div class="validator blink">
+            <%= error.msg %>
+
+        </div>
+        <% }) %>
+            <% } %>
+                <% if(success_msg !='') { %>
+                    <div class="validator  success">
+                        <%= success_msg %>
+                    </div>
+                    <% } %>
+                        <% if(error_msg !='') { %>
+                            <div class="validator blink">
+                                <%= error_msg %>
+                            </div>
+                            <% } %>
+                                <% if(error !='') { %>
+                                    <div class="validator blink">
+                                        <%= error %>
+                                    </div>
+                                    <% } %>
