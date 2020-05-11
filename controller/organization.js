@@ -194,7 +194,8 @@ module.exports.postUpdatePassword = (req, res, next) => {
 
 module.exports.getDashboard = (req, res, next) => {
     const organizationName = req.user.organizationName;
-    Donars.find({ organizationName: organizationName }).sort({ originalDate: 'desc', units: 'desc' })
+    const organizationEmail = req.user.organizationEmail;
+    Donars.find({ organizationName: organizationName, organizationEmail: organizationEmail }).sort({ originalDate: 'desc', units: 'desc' })
         .then(donations => {
             res.render('dashboard', {
                 donars: donations,
