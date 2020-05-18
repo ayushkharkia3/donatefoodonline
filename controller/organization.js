@@ -85,10 +85,16 @@ module.exports.postRegister = (req, res, next) => {
                                 req.flash('error_msg', 'Please verify your email to login');
                                 res.redirect('/org/login');
                             }).catch(err => {
-                                console.log(err);
+                                const error = new Error(err);
+                                error.httpStatusCode = 500;
+                                return next(error);
                             })
                     }))
                 }
+            }).catch(err => {
+                const error = new Error(err);
+                error.httpStatusCode = 500;
+                return next(error);
             })
     }
 }
@@ -115,6 +121,10 @@ module.exports.getVerifyEmail = (req, res, next) => {
                 req.flash('error_msg', 'You are already verified');
                 res.redirect('/org/login')
             }
+        }).catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
         })
 }
 
@@ -154,6 +164,10 @@ module.exports.postForgotPassword = (req, res, next) => {
                 req.flash('error_msg', 'Invalid Email Address');
                 res.redirect('/org/login')
             }
+        }).catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
         })
 }
 
@@ -184,10 +198,16 @@ module.exports.postUpdatePassword = (req, res, next) => {
                                 req.flash('success_msg', 'Password Changed');
                                 res.redirect('/org/login');
                             }).catch(err => {
-                                console.log(err);
+                                const error = new Error(err);
+                                error.httpStatusCode = 500;
+                                return next(error);
                             })
                     }))
                 }
+            }).catch(err => {
+                const error = new Error(err);
+                error.httpStatusCode = 500;
+                return next(error);
             })
     }
 }
@@ -201,6 +221,10 @@ module.exports.getDashboard = (req, res, next) => {
                 donars: donations,
                 name: req.user.organizationName
             })
+        }).catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
         })
 }
 
@@ -221,6 +245,10 @@ module.exports.postDonate = async(req, res) => {
         const newDonar = new Donars({ organizationName, organizationEmail, organizationContact, units, distributionDate, distributionPincode, slot, distributionPlaces, originalDate })
         newDonar.save().then(() => {
             res.end()
+        }).catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
         })
     }
 }

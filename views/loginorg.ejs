@@ -42,6 +42,7 @@
                                 <div class="form__group"> <input type="email" value="<%= typeof organizationEmail != 'undefined' ? organizationEmail : '' %>" name="organizationEmail" id="email" class="form__input" placeholder="Email Address" required> <label for="email" class="form__label select ">Email address</label>                                    </div>
                                 <div class="form__group"> <input type="password" class="form__input" id="password" name="password" required placeholder="Password" minlength="6"><label for="password" class="form__label">Password</label> </div>
                                 <div class="form__group ">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                     <button type="submit " class="btn btn--green">Login</button> </div>
                         </form>
                         <a href="/org/forgotpassword" class="footer__link">Forgot Password</a>

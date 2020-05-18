@@ -24,7 +24,11 @@ module.exports = (passport) => {
                         }
                     })
                 })
-                .catch(err => console.log(err))
+                .catch(err => {
+                    const error = new Error(err);
+                    error.httpStatusCode = 500;
+                    return next(error);
+                })
         })
     );
     passport.serializeUser((user, done) => {

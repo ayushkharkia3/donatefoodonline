@@ -18,6 +18,10 @@ module.exports.postSlots = (req, res, next) => {
                 donars: donars,
                 len: donars.length
             })
+        }).catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
         })
 };
 
@@ -32,6 +36,10 @@ module.exports.getSlots = (req, res, next) => {
                 donars: donars,
                 len: donars.length
             })
+        }).catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
         })
 };
 

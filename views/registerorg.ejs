@@ -49,6 +49,7 @@
                                 <div class="form__group"> <input type="password" class="form__input" id="password" name="password" placeholder="Set password" minlength="6" required><label for="password" class="form__label">Set Password</label> </div>
                                 <div class="form__group"> <input type="password" class="form__input" id="password" name="password2" placeholder="Verify your password" minlength="6" required><label for="password2" class="form__label">Verify your Password</label> </div>
                                 <div class="form__group ">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                     <button type="submit " class="btn btn--green">Register</button> </div>
                         </form>
 
