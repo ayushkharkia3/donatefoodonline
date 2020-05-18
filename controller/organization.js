@@ -213,9 +213,7 @@ module.exports.postUpdatePassword = (req, res, next) => {
 }
 
 module.exports.getDashboard = (req, res, next) => {
-    const organizationName = req.user.organizationName;
-    const organizationEmail = req.user.organizationEmail;
-    Donars.find({ organizationName: organizationName, organizationEmail: organizationEmail }).sort({ originalDate: 'desc', units: 'desc' })
+    Donars.find({ userId: req.user._id }).sort({ originalDate: 'desc', units: 'desc' })
         .then(donations => {
             res.render('dashboard', {
                 donars: donations,
@@ -232,25 +230,19 @@ module.exports.getDonate = (req, res, next) => {
     res.render('register-donar')
 }
 
-module.exports.postDonate = async(req, res) => {
-    const captchaVerified = await fetch(`https://www.google.com/recaptcha/api/siteverify?secret=6LcWxfQUAAAAACtjKYUZDUDjzFwxz4Z038-BJgbr&response=${req.params.captcharesponse}`, {
-            method: "POST"
-        })
-        .then(_res => _res.json())
-
-    if (captchaVerified.success === true) {
-        const { units, originalDate, distributionPincode, slot, distributionPlaces } = req.params;
-        const { organizationName, organizationEmail, organizationContact } = req.user;
-        const distributionDate = originalDate.substring(8) + '-' + originalDate.substring(5, 7) + '-' + originalDate.substring(0, 4);
-        const newDonar = new Donars({ organizationName, organizationEmail, organizationContact, units, distributionDate, distributionPincode, slot, distributionPlaces, originalDate })
-        newDonar.save().then(() => {
-            res.end()
+module.exports.postDonate = (req, res, next) => {
+    const { units, originalDate, distributionPincode, slot, distributionPlaces } = req.body;
+    const { organizationName, organizationEmail, organizationContact } = req.user;
+    const distributionDate = originalDate.substring(8) + '-' + originalDate.substring(5, 7) + '-' + originalDate.substring(0, 4);
+    const newDonar = new Donars({ organizationName, organizationEmail, organizationContact, units, distributionDate, distributionPincode, slot, distributionPlaces, originalDate, userId: req.user._id })
+    newDonar.save()
+        .then(() => {
+            res.redirect('/org/dashboard')
         }).catch(err => {
             const error = new Error(err);
             error.httpStatusCode = 500;
             return next(error);
         })
-    }
 }
 
 module.exports.getLogout = (req, res, next) => {

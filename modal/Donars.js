@@ -1,5 +1,7 @@
 const mongosoe = require('mongoose');
 
+const Schema = mongosoe.Schema;
+
 const DonarsSchema = new mongosoe.Schema({
     organizationName: {
         type: String,
@@ -40,6 +42,11 @@ const DonarsSchema = new mongosoe.Schema({
     addedDate: {
         type: String,
         default: (new Date).toString()
+    },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Organizations',
+        required: true
     }
 
 })

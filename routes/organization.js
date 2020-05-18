@@ -17,7 +17,7 @@ router.get('/forgot/:key/reset', organizationController.getUpdatePassword);
 router.post('/updatepassword', organizationController.postUpdatePassword);
 router.get('/dashboard', ensureAuthenticated, organizationController.getDashboard);
 router.get('/donate', ensureAuthenticated, organizationController.getDonate);
-router.post("/donate/:distributionPlaces/:distributionDate/:distributionPincode/:slot/:units/:captcharesponse/", ensureAuthenticated, organizationController.postDonate);
+router.post("/donate", ensureAuthenticated, organizationController.postDonate);
 router.get('/logout', organizationController.getLogout);
 
 module.exports = router;
